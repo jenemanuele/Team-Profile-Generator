@@ -1,32 +1,33 @@
 const fs = require('fs');
-const path = require('path');
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
-// Team roles
-// const Manager = new file for Manager
-// const Engineer = new file for Engineer
-// const Intern = new file for Intern
 
-//const teamList =[]
+const teamRoster =[];
 
-// Begin questions 
-const addEmployee = () => {
-    return inquirer.prompt([
+function initiateApp() {
+    startHtml();
+    addEmployee();
+}
+
+function addEmployee() {
+// Begin prompted questions for file 
+     inquirer.prompt([
         {
             type: 'input',
-            name: 'managerName',
-            message: "What is your team manager's name?"
-            // validation code here       
+            name: 'name',
+            message: "What is your team manager's name?"               
         },
         {
             type: 'input',
-            name: 'managerId',
+            name: 'id',
             message: "What is your manager's ID number?"
-            //validation code here
         },
         {
             type: 'input',
-            name: 'managerEmail',
+            name: 'email',
             message: "What is your manager's email address?"
         },
         {
@@ -42,19 +43,17 @@ const addEmployee = () => {
         },
         {
             type: 'input',
-            name: 'employeeName',
+            name: 'name',
             message: "What is your employee's name?"
-            //validation code here
         },
         {
             type: 'input',
-            name: 'employeeID',
+            name: 'id',
             message: "What is your employee's ID number?"
-            //validation code here
         },
         {
             type: 'input',
-            name: 'employeeEmail',
+            name: 'email',
             message: "What is your employee's email address?"
         },
         {
@@ -81,13 +80,31 @@ const addEmployee = () => {
         let employee;
         
         if (role === 'Engineer') {
-            employee = new Engineer (employeeName, employeeID, employeeEmail, github);
+            employee = new Engineer (name, id, email, github);
             console.log(employee);                                
         } else if (role === 'Intern') {
-            employee = new Intern (employeeName, employeeID, employeeEmail, school);
+            employee = new Intern (name, id, email, school);
             console.log(employee);           
         }
+        teamRoster.push(employee);
+        if (confirmAdd) {
+            return addEmployee(teamRoster);
+        } else {
+            return teamRoster;
+        }
+    })
+};
 
+// create function to write html file
+
+const writeHtml = data => {
+    fs.writeFile('./', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log('Your team profile has been created!')
+        }
     })
 };
 
