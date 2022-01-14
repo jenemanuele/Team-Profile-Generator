@@ -9,12 +9,10 @@ const teamRoster =[];
 
 function initiateApp() {
     startHtml();
-    addEmployee();
-}
 
-function addEmployee() {
-// Begin prompted questions for file 
-     inquirer.prompt([
+}
+function addManager() {
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -35,6 +33,12 @@ function addEmployee() {
             name: 'officeNumber',
             message: "What is your manager's office number?"    
         },
+    ])
+}
+
+function addEmployee() {
+// Begin prompted questions for Employee
+     inquirer.prompt([   
         {
             type: 'list',
             name: 'role',
@@ -75,6 +79,9 @@ function addEmployee() {
             default: false
         }
     ])
+
+
+
     .then(teamInfo => {
         let { name, id, email, role, github, school, confirmAdd } = teamInfo;
         let employee;

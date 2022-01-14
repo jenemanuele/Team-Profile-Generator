@@ -1,14 +1,22 @@
  // create Manager card
+ const Manager = function (manager) {
+    return `
+    <div class="card">
+        <div class="card-header">
+            <h4>${manager.manangerName}<h4>
+        </div>
 
+        <div class="card-body">
+            <p class="managerId"> ID: ${managerID.id}</p>
+            <p class="managerEmail">Email: <a href="mailto:${managerEmail}">${managerEmail}</a></p>
+            <p class= "officeNumber">Office Number: ${officeNumber}</p>
+        </div>
+    </div>    
+    `;
+}
 
  // create Engineer card
-const Manager = function (manager) {
-    return `
-    <div>
-        <div class="card-header">
-        <h4>${manager.name}<h4>
-    `
-}
+
 
  //creat Intern card
 
@@ -38,7 +46,7 @@ const Manager = function (manager) {
         <main>
             <div class="container">
                 <div class= "row" id="team-cards">
-              // ***data to be inserted
+              // *******data to be inserted
                 </div>
             </div>
         </main>
