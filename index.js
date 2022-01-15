@@ -1,106 +1,31 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
+const { prompt } = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-
-
-const teamRoster =[];
-
+const  teamRoster = {'Manager':[],'Engineer':[],'Intern':[]};
+var position = '';
 function initiateApp() {
     startHtml();
 
 }
-function addManager() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: "What is your team manager's name?"               
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: "What is your manager's ID number?"
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: "What is your manager's email address?"
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: "What is your manager's office number?"    
-        },
-    ])
-}
 
-function addEmployee() {
-// Begin prompted questions for Employee
-     inquirer.prompt([   
-        {
-            type: 'list',
-            name: 'role',
-            message: "Please pick employee position:",
-            choices: ['Engineer', 'Intern']
-        },
-        {
-            type: 'input',
-            name: 'name',
-            message: "What is your employee's name?"
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: "What is your employee's ID number?"
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: "What is your employee's email address?"
-        },
-        {
-            type: 'input',
-            name: 'github', 
-            message: "What is your employee's gitHub username?",
-            when: (input) => input.role === 'Engineer',
-        },
-        {
-            type: 'input',
-            name: 'school',
-            message: "Please enter intern's school:",
-            when: (input) => input.role === 'Intern'
-        },
-        {
-            type: 'confirm',
-            name: 'confirmAdd',
-            message: 'Would you like to add additional teammates?',
-            default: false
-        }
-    ])
+prompt({
+    type: 'list',
+    name: 'role',
+    message: 'Which role would you like to pick?',
+    choices: Object.keys(teamRoster)
+}).then(({role}) => {
+    position = role;
+    let items = ['id','name','email'];
+    items.push(role == 'Manager' ? 'officeNumber' : role == 'Engineer' ? 'Github' : 'school');
+    questions = [];
+    items.forEach(item => {
+        questions.push({type:'input',name:item,message:`What is your ${item}?`})
+    });
+    prompt(questions).then(console.log('role: ',position));
 
-
-
-    .then(teamInfo => {
-        let { name, id, email, role, github, school, confirmAdd } = teamInfo;
-        let employee;
-        
-        if (role === 'Engineer') {
-            employee = new Engineer (name, id, email, github);
-            console.log(employee);                                
-        } else if (role === 'Intern') {
-            employee = new Intern (name, id, email, school);
-            console.log(employee);           
-        }
-        teamRoster.push(employee);
-        if (confirmAdd) {
-            return addEmployee(teamRoster);
-        } else {
-            return teamRoster;
-        }
-    })
-};
+});
 
 // create function to write html file
 
