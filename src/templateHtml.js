@@ -1,5 +1,5 @@
  // make Manager card
- const genManager = function (Manager) {
+ const generateManager = function (manager) {
     return `
     <div class="card">
         <div class="card-header">
@@ -7,8 +7,8 @@
         </div>
 
         <div class="card-body">
-            <p class="id"> ID: ${Manager.id}</p>
-            <p class="email">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></p>
+            <p class="id"> ID: ${manager.id}</p>
+            <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
             <p class= "officeNumber">Office Number: ${officeNumber}</p>
         </div>
     </div>    
@@ -16,24 +16,24 @@
 }
 
  // make Engineer card
- const genEngineer = function (Engineer) {
+ const generateEngineer = function (engineer) {
     return `
     <div class="card">
         <div class="card-header">
-            <h3>${Engineer.name}</h3>
+            <h3>${engineer.name}</h3>
         </div>
 
         <div class="card-body">
-            <p class="id"> ID: ${Engineer.id}: Engineer</p>
-            <p class="email">Email: <a href="mailto:${Engineer.emaill}">${Engineer.email}</a></p>
-            <p class= "github">Github: <a href="https://github.com/${Engineer.github}"></a></p>
+            <p class="id"> ID: ${engineer.id}: Engineer</p>
+            <p class="email">Email: <a href="mailto:${engineer.emaill}">${engineer.email}</a></p>
+            <p class= "github">Github: <a href="https://github.com/${engineer.github}"></a></p>
         </div>
     </div>    
 `
  }
 
  // make  Intern card
- const genIntern = function (intern) {
+ const generateIntern = function (intern) {
     return `
     <div class="card">
         <div class="card-header">
@@ -49,7 +49,7 @@
     `
  };
 
- generateTemplate = (data) => {
+ generateTemplate = (teamRoster) => {
 
     teamRoster = [];
 
@@ -58,19 +58,19 @@
         const role = employee.getRole();
 
         if (role === 'Manager') {
-            const managerCard = genManager(employee);
+            const managerCard = generateManager(employee);
 
             teamRoster.push(managerCard)
         }
 
         if (role === 'Engineer') {
-            const engineerCard = genEngineer(employee);
+            const engineerCard = generateEngineer(employee);
 
             teamRoster.push(engineerCard);
         }
 
         if (role === 'Intern') {
-            const internCard = genIntern(employee);
+            const internCard = generateIntern(employee);
 
             teamRoster.push(internCard);
         }
@@ -106,7 +106,7 @@ const generateTeamTemplate = function (teamCards) {
         <main>
             <div class="container">
                 <div class= "row" id="team-cards">
-              // ****w***data to be inserted
+                    ${teamCards}
                 </div>
             </div>
         </main>

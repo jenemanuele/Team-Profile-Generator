@@ -6,6 +6,7 @@ const Intern = require('./lib/Intern');
 const  teamRoster = {'Manager':[],'Engineer':[],'Intern':[]};
 var position = '';
 
+
 //?????????????????
 prompt({
     type: 'list',
@@ -20,14 +21,31 @@ prompt({
     items.forEach(item => {
         questions.push({type:'input',name:item,message:`What is your ${item}?`})
     });
-    prompt(questions).then(console.log(keys));
-
+    prompt(questions).then(answers => {
+               
+        if (role === 'Manager') {
+            const manager = new Manager(answers.name, answers.id, answers.email);
+            teamRoster.Manager.push(manager)
+        } 
+        if (role === 'Engineer') {
+            const engineer = new Engineer(answers.name, answers.id, answers.email);
+            teamRoster.Engineer.push(engineer)
+        }
+        if (role === 'Intern') {
+            const intern = new Intern(answers.name, answers.id, answers.email);
+            teamRoster.Intern.push(intern)
+        }
+       console.log(teamRoster);
+    });
+   
+    
 });
 
-// create function to write html file
 
-const writeHtml = data => {
-    fs.writeFile('./', data, err => {
+// create function to write html file **const writeHtml = data =>
+
+const writeHtml = teamRoster => {
+    fs.writeFile('./dist/index.html', teamRoster, err => {
         if (err) {
             console.log(err);
             return;
@@ -35,5 +53,7 @@ const writeHtml = data => {
             console.log('Your team profile has been created!')
         }
     })
+
+writeHtml();
 };
 
