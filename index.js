@@ -5,11 +5,8 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const  teamRoster = {'Manager':[],'Engineer':[],'Intern':[]};
 var position = '';
-function initiateApp() {
-    startHtml();
 
-}
-
+//?????????????????
 prompt({
     type: 'list',
     name: 'role',
@@ -17,13 +14,13 @@ prompt({
     choices: Object.keys(teamRoster)
 }).then(({role}) => {
     position = role;
-    let items = ['id','name','email'];
+    let items = ['name','id','email'];
     items.push(role == 'Manager' ? 'officeNumber' : role == 'Engineer' ? 'Github' : 'school');
     questions = [];
     items.forEach(item => {
         questions.push({type:'input',name:item,message:`What is your ${item}?`})
     });
-    prompt(questions).then(console.log('role: ',position));
+    prompt(questions).then(console.log(keys));
 
 });
 

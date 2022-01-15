@@ -1,30 +1,90 @@
- // create Manager card
- const Manager = function (manager) {
+ // make Manager card
+ const genManager = function (Manager) {
     return `
     <div class="card">
         <div class="card-header">
-            <h4>${manager.manangerName}<h4>
+            <h3>${manager.name}: Manager</h3>
         </div>
 
         <div class="card-body">
-            <p class="managerId"> ID: ${managerID.id}</p>
-            <p class="managerEmail">Email: <a href="mailto:${managerEmail}">${managerEmail}</a></p>
+            <p class="id"> ID: ${Manager.id}</p>
+            <p class="email">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></p>
             <p class= "officeNumber">Office Number: ${officeNumber}</p>
         </div>
     </div>    
-    `;
+    `
 }
 
- // create Engineer card
+ // make Engineer card
+ const genEngineer = function (Engineer) {
+    return `
+    <div class="card">
+        <div class="card-header">
+            <h3>${Engineer.name}</h3>
+        </div>
+
+        <div class="card-body">
+            <p class="id"> ID: ${Engineer.id}: Engineer</p>
+            <p class="email">Email: <a href="mailto:${Engineer.emaill}">${Engineer.email}</a></p>
+            <p class= "github">Github: <a href="https://github.com/${Engineer.github}"></a></p>
+        </div>
+    </div>    
+`
+ }
+
+ // make  Intern card
+ const genIntern = function (intern) {
+    return `
+    <div class="card">
+        <div class="card-header">
+            <h3>${intern.name}: Intern</h3>
+        </div>
+
+        <div class="card-body">
+            <p class="id"> ID: ${intern.id}</p>
+            <p class="email">Email: <a href="mailto:${intern.emaill}">${intern.email}</a></p>
+            <p class="school">School: ${intern.school}</p>
+        </div>
+    </div>    
+    `
+ };
+
+ generateTemplate = (data) => {
+
+    teamRoster = [];
+
+    for (let i =0; i < data.length; i++) {
+        const employee =data[i];
+        const role = employee.getRole();
+
+        if (role === 'Manager') {
+            const managerCard = genManager(employee);
+
+            teamRoster.push(managerCard)
+        }
+
+        if (role === 'Engineer') {
+            const engineerCard = genEngineer(employee);
+
+            teamRoster.push(engineerCard);
+        }
+
+        if (role === 'Intern') {
+            const internCard = genIntern(employee);
+
+            teamRoster.push(internCard);
+        }
+
+        const teamCards = teamRoster.join('')
+
+        const generateTeam = generateTeamTemplate(teamCards);
+        return generateTeam;
+    }
 
 
- //creat Intern card
-
-
- // export function to generate entire page
- module.exports= templateData => {
-    // destructure page data by section
-    const { Manager, Engineer, Intern} = templateData;
+ }
+// generateTeamTemplate using teamRoster array
+const generateTeamTemplate = function (teamCards) {
 
     return `
     <!DOCTYPE html> 
@@ -51,8 +111,13 @@
             </div>
         </main>
     </body>
-   
-    </html>
-    `
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </html>
+`
 }
-// need to link jquery, js after body??
+
+
+// export to index
+module.exports = generateTemplate;

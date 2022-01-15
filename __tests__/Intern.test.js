@@ -1,5 +1,4 @@
 const Intern = require('..lib/Intern');
-const { TestWatcher } = require('jest');
 
 test('creates Intern ', () => {
     const intern = new Intern('Jen', 25, 'jemanuele@gmail.com', 'OSU');
