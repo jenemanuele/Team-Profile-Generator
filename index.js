@@ -74,8 +74,6 @@ const writeHtmlFile = stringHtml => {
         } else {
             console.log('Your team profile has been created!')
         }
-    })
+    });
 
-
-};
-
+}

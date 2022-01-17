@@ -12,7 +12,6 @@ const Intern = require('../lib/Intern');
             <div class="card-header">
                 <h3>Manager: ${manager.name}</h3>
             </div>
-
             <div class="card-body">
                 <p class="id"> ID: ${manager.id}</p>
                 <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
@@ -31,7 +30,6 @@ const Intern = require('../lib/Intern');
             <div class="card-header">
                 <h3>Engineer: ${engineer.name}</h3>
             </div>
-
             <div class="card-body">
                 <p class="id"> ID: ${engineer.id}: Engineer</p>
                 <p class="email">Email: <a href="mailto:${engineer.emaill}">${engineer.email}</a></p>
@@ -50,7 +48,6 @@ const Intern = require('../lib/Intern');
             <div class="card-header">
                 <h3>Intern: ${intern.name}</h3>
             </div>
-
             <div class="card-body">
                 <p class="id"> ID: ${intern.id}</p>
                 <p class="email">Email: <a href="mailto:${intern.emaill}">${intern.email}</a></p>
