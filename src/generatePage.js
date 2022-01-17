@@ -1,5 +1,7 @@
 const Employee = require("../lib/Employee");
-const Manager = require("../lib/Manager")
+const Manager = require("../lib/Manager");
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 
 
  // make Manager card
@@ -8,7 +10,7 @@ const Manager = require("../lib/Manager")
     <div class="col-4 mt-4">
         <div class="card">
             <div class="card-header">
-                <h3>${manager.name}: Manager</h3>
+                <h3>Manager: ${manager.name}</h3>
             </div>
 
             <div class="card-body">
@@ -27,7 +29,7 @@ const Manager = require("../lib/Manager")
     <div class="col-4 mt-4">
         <div class="card">
             <div class="card-header">
-                <h3>${engineer.name}</h3>
+                <h3>Engineer: ${engineer.name}</h3>
             </div>
 
             <div class="card-body">
@@ -46,7 +48,7 @@ const Manager = require("../lib/Manager")
     <div class="col-4 mt-4">
         <div class="card h-100">
             <div class="card-header">
-                <h3>${intern.name}: Intern</h3>
+                <h3>Intern: ${intern.name}</h3>
             </div>
 
             <div class="card-body">
