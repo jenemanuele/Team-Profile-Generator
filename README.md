@@ -21,7 +21,7 @@
   Contact
   Please see: [Contributor Covenant](https://www.contributor-covenant.org/)
   ## Tests
-  Nodejs
+  Nodejs & Jest
   ## Questions?
   None.
   ## License
